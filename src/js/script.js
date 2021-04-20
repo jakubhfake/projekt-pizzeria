@@ -61,16 +61,16 @@
       console.log('new Product:', thisProduct);
     }
     renderInMenu(){
-      
+      const thisProduct = this;
       /* generate HTML based of templates */
-      
-      
+      const generatedHTML = templates.menuProduct(thisProduct.data);
+      console.log('Product HTML: ', generatedHTML);
       /* create element using utils.createElementFromHTML */
-      
+      thisProduct.element = utils.createDOMFromHTML(generatedHTML);
       /* find menu container */
-      
+      const menuContainer = document.querySelector(select.containerOf.menu);
       /*add element to menu */
-      
+      menuContainer.appendChild(thisProduct.element);
     }
   }
 
