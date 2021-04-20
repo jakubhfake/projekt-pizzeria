@@ -61,8 +61,16 @@
       console.log('new Product:', thisProduct);
     }
     renderInMenu(){
-      const thisProduct = this;
-
+      
+      /* generate HTML based of templates */
+      
+      
+      /* create element using utils.createElementFromHTML */
+      
+      /* find menu container */
+      
+      /*add element to menu */
+      
     }
   }
 
