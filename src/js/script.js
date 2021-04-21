@@ -88,10 +88,10 @@
         console.log('xxx: ',activeProduct);
         /* if there is active product and it's not thisProduct.element, remove class active from it */
         if(activeProduct !== null && activeProduct !== thisProduct.element) {
-          activeProduct.classList.remove(classNames.menuProduct.wrapperActive);
+          activeProduct.classList.remove('active');
         }
         /* toggle active class on thisProduct.element */
-        thisProduct.element.classList.toggle(classNames.menuProduct.wrapperActive);
+        thisProduct.element.classList.toggle('active');
       });
     }
   }
