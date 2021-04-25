@@ -61,7 +61,7 @@
       thisProduct.getElements();
       thisProduct.initAccordion();
       thisProduct.initOrderForm();
-      thisProduct.procesOrder();
+      thisProduct.processOrder();
       //console.log('new Product:', thisProduct);
     }
     renderInMenu() {
@@ -146,12 +146,10 @@
               // reduce total price
                 price = price - param.options.price;
               }
-              price = thisProduct.data.price - options.price;
             }
           }
         }
       }
-    
       // update calculated price in the HTML
       thisProduct.priceElem.innerHTML = price;
     }
