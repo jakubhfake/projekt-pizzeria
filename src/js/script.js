@@ -140,12 +140,12 @@
             // add price to total price
               price = price + option.price;
             }
-            else {
-              // check if opion is default
-              if(option.default) {
-              // reduce total price
-                price = price - option.price;
-              }
+          }
+          else {
+            // check if opion is default
+            if(option.default) {
+            // reduce total price
+              price = price - option.price;
             }
           }
         }
