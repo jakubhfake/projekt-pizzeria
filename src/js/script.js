@@ -98,16 +98,16 @@
       const thisProduct = this;
       thisProduct.form.addEventListener('submit', function(event){
         event.preventDefault();
-        thisProduct.procesOrder();
+        thisProduct.processOrder();
       });
       for(let input of thisProduct.formInputs) {
         input.addEventListener('change', function() {
-          thisProduct.procesOrder();
+          thisProduct.processOrder();
         });
       }
       thisProduct.cartButton.addEventListener('click', function(event) {
         event.preventDefault();
-        thisProduct.procesOrder();
+        thisProduct.processOrder();
       });
       console.log('initOrderForm', thisProduct);
     }
