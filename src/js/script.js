@@ -79,7 +79,8 @@
       thisProduct.form = thisProduct.element.querySelector(select.menuProduct.form);
       thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
       thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);     
-      thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);      
+      thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
+      thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
     }
 
     initAccordion() {
@@ -126,26 +127,29 @@
         // determine param value, e.g. paramId = 'toppings', param = { label: 'Toppings', type: 'checkboxes'... }
         const param = thisProduct.data.params[paramId];
         //console.log(paramId, param);
-    
+        
         // for every option in this category
         for(let optionId in param.options) {
           // determine option value, e.g. optionId = 'olives', option = { label: 'Olives', price: 2, default: true }
           const option = param.options[optionId];
+          const optionImage = thisProduct.imageWrapper.querySelector(paramId + optionId);
           console.log(optionId, option);
+          console.log('Images: ', optionImage);
           // check if there is param with name of paramId in formData and if it inncludes optionId
           if(formData[paramId] && formData[paramId].includes(optionId)) {
-
+            
             // check if option isn't default
             if(!option.default) {
             // add price to total price
-              price = price + option.price;
+              price += option.price;
             }
           }
           else {
             // check if opion is default
             if(option.default) {
             // reduce total price
-              price = price - option.price;
+              price -= option.price;
+              //thisProduct.classList.images.remove(classNames.menuProduct.imageVisible);
             }
           }
         }
