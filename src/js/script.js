@@ -136,23 +136,27 @@
           console.log(optionId, option);
           console.log('Images: ', optionImage);
           // check if there is param with name of paramId in formData and if it inncludes optionId
+          
+          if(formData[paramId] && formData[paramId].includes(optionId)) {
+            // check if option isn't default
+            if(!option.default) {
+              // add price to total price
+              price += option.price;
+            }
+          }
+          else {
+            // check if opion is default
+            if(option.default) {
+              // reduce total price
+              price -= option.price;
+            }
+          }
           if(optionImage){
             if(formData[paramId] && formData[paramId].includes(optionId)) {
               optionImage.classList.add(classNames.menuProduct.imageVisible);
-              // check if option isn't default
-              if(!option.default) {
-              // add price to total price
-                price += option.price;
-              }
             }
             else {
-            // check if opion is default
-              if(option.default) {
-              // reduce total price
-                price -= option.price;
-                optionImage.classList.remove(classNames.menuProduct.imageVisible);
-              }
-          
+              optionImage.classList.remove(classNames.menuProduct.imageVisible);
             }
           }
         }
@@ -161,6 +165,8 @@
       thisProduct.priceElem.innerHTML = price;
     }
   }
+  
+  
 
   const app = {
     initMenu: function() {
