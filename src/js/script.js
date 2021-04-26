@@ -133,11 +133,12 @@
           // determine option value, e.g. optionId = 'olives', option = { label: 'Olives', price: 2, default: true }
           const option = param.options[optionId];
           const optionImage = thisProduct.imageWrapper.querySelector('.' + paramId + '-' + optionId);
+          const imageSelected = formData[paramId] && formData[paramId].includes(optionId);
           console.log(optionId, option);
           console.log('Images: ', optionImage);
           // check if there is param with name of paramId in formData and if it inncludes optionId
           
-          if(formData[paramId] && formData[paramId].includes(optionId)) {
+          if(imageSelected) {
             // check if option isn't default
             if(!option.default) {
               // add price to total price
@@ -152,7 +153,7 @@
             }
           }
           if(optionImage){
-            if(formData[paramId] && formData[paramId].includes(optionId)) {
+            if(imageSelected) {
               optionImage.classList.add(classNames.menuProduct.imageVisible);
             }
             else {
