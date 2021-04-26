@@ -132,24 +132,27 @@
         for(let optionId in param.options) {
           // determine option value, e.g. optionId = 'olives', option = { label: 'Olives', price: 2, default: true }
           const option = param.options[optionId];
-          const optionImage = thisProduct.imageWrapper.querySelector(paramId + optionId);
+          const optionImage = thisProduct.imageWrapper.querySelector('.' + paramId + '-' + optionId);
           console.log(optionId, option);
           console.log('Images: ', optionImage);
           // check if there is param with name of paramId in formData and if it inncludes optionId
-          if(formData[paramId] && formData[paramId].includes(optionId)) {
-            
-            // check if option isn't default
-            if(!option.default) {
-            // add price to total price
-              price += option.price;
+          if(optionImage){
+            if(formData[paramId] && formData[paramId].includes(optionId)) {
+              optionImage.classList.add(classNames.menuProduct.imageVisible);
+              // check if option isn't default
+              if(!option.default) {
+              // add price to total price
+                price += option.price;
+              }
             }
-          }
-          else {
+            else {
             // check if opion is default
-            if(option.default) {
-            // reduce total price
-              price -= option.price;
-              //thisProduct.classList.images.remove(classNames.menuProduct.imageVisible);
+              if(option.default) {
+              // reduce total price
+                price -= option.price;
+                optionImage.classList.remove(classNames.menuProduct.imageVisible);
+              }
+          
             }
           }
         }
@@ -157,7 +160,6 @@
       // update calculated price in the HTML
       thisProduct.priceElem.innerHTML = price;
     }
-
   }
 
   const app = {
