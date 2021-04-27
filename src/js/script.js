@@ -62,7 +62,6 @@
       thisProduct.initAccordion();
       thisProduct.initOrderForm();
       thisProduct.processOrder();
-      //console.log('new Product:', thisProduct);
     }
     renderInMenu() {
       const thisProduct = this;
@@ -110,45 +109,26 @@
         event.preventDefault();
         thisProduct.processOrder();
       });
-      //console.log('initOrderForm', thisProduct);
     }
     processOrder() {
       const thisProduct = this;
-    
-      // covert form to object structure e.g. { sauce: ['tomato'], toppings: ['olives', 'redPeppers']}
       const formData = utils.serializeFormToObject(thisProduct.form);
-      // console.log('formData', formData);
-    
-      // set price to default price
       let price = thisProduct.data.price;
-    
-      // for every category (param)...
       for(let paramId in thisProduct.data.params) {
-        // determine param value, e.g. paramId = 'toppings', param = { label: 'Toppings', type: 'checkboxes'... }
         const param = thisProduct.data.params[paramId];
-        //console.log(paramId, param);
-        
-        // for every option in this category
         for(let optionId in param.options) {
-          // determine option value, e.g. optionId = 'olives', option = { label: 'Olives', price: 2, default: true }
           const option = param.options[optionId];
           const optionImage = thisProduct.imageWrapper.querySelector('.' + paramId + '-' + optionId);
           const imageSelected = formData[paramId] && formData[paramId].includes(optionId);
           console.log(optionId, option);
           console.log('Images: ', optionImage);
-          // check if there is param with name of paramId in formData and if it inncludes optionId
-          
           if(imageSelected) {
-            // check if option isn't default
             if(!option.default) {
-              // add price to total price
               price += option.price;
             }
           }
           else {
-            // check if opion is default
             if(option.default) {
-              // reduce total price
               price -= option.price;
             }
           }
@@ -162,7 +142,6 @@
           }
         }
       }
-      // update calculated price in the HTML
       thisProduct.priceElem.innerHTML = price;
     }
   }
@@ -172,7 +151,6 @@
   const app = {
     initMenu: function() {
       const thisApp = this;
-      //console.log('thisApp.data: ', thisApp.data);
       for(let productData in thisApp.data.products){
         new Product(productData, thisApp.data.products[productData]);
       }
