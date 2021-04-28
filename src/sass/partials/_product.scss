@@ -86,7 +86,7 @@
 
     > img {
       @include center();
-      height: auto;
+      //height: auto;
       opacity: 0;
       transition: opacity 500ms;
 
