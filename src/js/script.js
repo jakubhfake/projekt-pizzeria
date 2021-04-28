@@ -141,9 +141,6 @@
             else if(!imageSelected) {
               optionImage.classList.remove(classNames.menuProduct.imageVisible);
             }
-            else {
-              
-            }
           }
         }
       }
