@@ -168,13 +168,16 @@
       thisWidget.input = thisWidget.element.querySelector(select.widgets.amount.input);
       thisWidget.linkDecrease = thisWidget.element.querySelector(select.widgets.amount.linkDecrease);
       thisWidget.linkIncrease = thisWidget.element.querySelector(select.widgets.amount.linkIncrease);
+      thisWidget.minProductValue = settings.amountWidget.defaultMin;
+      thisWidget.maxProductValue = settings.amountWidget.defaultMax;
     }
     setValue (value){
       const thisWidget = this;
       const newValue = parseInt(value);
       /* TODO: Add validation */
-      if(thisWidget.value !== newValue && !isNaN(newValue)){
+      if(thisWidget.value !== newValue && !isNaN(newValue)  && newValue >= thisWidget.minProductValue && newValue <= thisWidget.maxProductValue){
         thisWidget.value = newValue;
+        console.log('newValue', newValue);
       }
       thisWidget.input.value = thisWidget.value;
     }
