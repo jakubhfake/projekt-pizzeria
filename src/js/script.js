@@ -189,8 +189,8 @@
       thisWidget.getElements(element);
       thisWidget.setValue(thisWidget.input.value);
       thisWidget.initActions();
-      console.log('AmountWidget: ', thisWidget);
-      console.log('constructor arguments: ', element);
+      //console.log('AmountWidget: ', thisWidget);
+      //console.log('constructor arguments: ', element);
     }
     getElements (element){
 
@@ -214,7 +214,7 @@
       const newValue = parseInt(value);
       if(thisWidget.value !== newValue && !isNaN(newValue)  && newValue >= thisWidget.minProductValue && newValue <= thisWidget.maxProductValue){
         thisWidget.value = newValue;
-        console.log('newValue', newValue);
+        //console.log('newValue', newValue);
       }
       thisWidget.input.value = thisWidget.value;
       thisWidget.announce();
@@ -237,6 +237,31 @@
       });
     }
   }
+
+  class Cart {
+    constructor(element){
+      const thisCart = this;
+      thisCart.products = [];
+      thisCart.getElements(element);
+      thisCart.initActions();
+      console.log('new Cart', thisCart);
+    }
+
+    initActions() {
+      const thisCart = this;
+      thisCart.dom.toggleTrigger.addEventListener('click', function(event){
+        event.preventDefault();
+        thisCart.dom.wraper.classList.toggle(classNames.cart.wrapperActive);
+      });
+
+    }
+
+    getElements(element) {
+      const thisCart = this;
+      thisCart.dom = {};
+      thisCart.dom.wraper = element;
+      thisCart.dom.toggleTrigger = thisCart.dom.wraper.querySelector(select.cart.toggleTrigger);    }
+  }
   
   const app = {
     initMenu: function() {
@@ -249,6 +274,12 @@
       const thisApp = this;
       thisApp.data = dataSource;
     },
+    initCart: function() {
+      const thisApp = this;
+      const cartElem = document.querySelector(select.containerOf.cart);
+      thisApp.cart = new Cart(cartElem);
+    },
+
     init: function() {
       const thisApp = this;
       console.log('*** App starting ***');
@@ -259,6 +290,7 @@
 
       thisApp.initData();
       thisApp.initMenu();
+      thisApp.initCart();
     },
   };
   app.init();
