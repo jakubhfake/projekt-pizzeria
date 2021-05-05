@@ -314,14 +314,14 @@
       thisCart.dom.productList.appendChild(generatedDOM);
       //console.log('adding product', menuProduct);
       thisCart.products.push(menuProduct);
-      console.log('thisCart.products', thisCart.products);
+      //console.log('thisCart.products', thisCart.products);
     }
   }
 
   // klasa musi wiedzieć jaki produkt jest wybrany w danej chwili
   // i mieć dostęp do repre
   class CartProduct {
-    constructor(menuProduct, element){
+    constructor(menuProduct, element) {
       // menuProdukt ma przyjmować referencję od podsumowania
       //element ma przyjmować referencję od utworzonego dla tego produktu elementu HTML generatedDOM
       const thisCartProduct = this;
@@ -337,9 +337,15 @@
     }
     getElements(element) {
       const thisCartProduct = this;
-      
+      thisCartProduct.dom = {};
+      thisCartProduct.dom.wrapper = element;
+      thisCartProduct.dom.amountWidget = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.amountWidget);
+      thisCartProduct.dom.price = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.price);
+      thisCartProduct.dom.edit = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.edit);
+      thisCartProduct.dom.remove = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.remove);
     }
   }
+  
   const app = {
     initMenu: function() {
       const thisApp = this;
