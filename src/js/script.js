@@ -313,17 +313,13 @@
       const generatedDOM =  utils.createDOMFromHTML(generatedHTML);
       thisCart.dom.productList.appendChild(generatedDOM);
       //console.log('adding product', menuProduct);
-      thisCart.products.push(menuProduct);
+      thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
       //console.log('thisCart.products', thisCart.products);
     }
   }
 
-  // klasa musi wiedzieć jaki produkt jest wybrany w danej chwili
-  // i mieć dostęp do repre
   class CartProduct {
     constructor(menuProduct, element) {
-      // menuProdukt ma przyjmować referencję od podsumowania
-      //element ma przyjmować referencję od utworzonego dla tego produktu elementu HTML generatedDOM
       const thisCartProduct = this;
       thisCartProduct.id = menuProduct.id;
       thisCartProduct.name = menuProduct.name;
@@ -332,7 +328,8 @@
       thisCartProduct.price = menuProduct.price;
       thisCartProduct.params = menuProduct.params;
       thisCartProduct.getElements(element);
-      console.log('xxx', thisCartProduct);
+      //thisCartProduct.initAmountWidget();
+      console.log('zzz', thisCartProduct);
 
     }
     getElements(element) {
@@ -344,8 +341,16 @@
       thisCartProduct.dom.edit = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.edit);
       thisCartProduct.dom.remove = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.remove);
     }
+    initAmountWidget() {
+      const thisCartProduct = this;
+      thisCartProduct.amountWidget = new AmountWidget(thisCartProduct.dom.amountWidget);
+      thisCartProduct.dom.amountWidget.addEventListener('updated', function() {
+              
+      });
+
+    }
   }
-  
+
   const app = {
     initMenu: function() {
       const thisApp = this;
