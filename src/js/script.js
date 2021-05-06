@@ -329,7 +329,7 @@
       thisCartProduct.params = menuProduct.params;
       thisCartProduct.getElements(element);
       //thisCartProduct.initAmountWidget();
-      console.log('zzz', thisCartProduct);
+      console.log(thisCartProduct);
 
     }
     getElements(element) {
