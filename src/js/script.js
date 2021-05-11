@@ -35,9 +35,9 @@
     cart: {
       productList: '.cart__order-summary',
       toggleTrigger: '.cart__summary',
-      totalNumber: `.cart__total-number`,
-      totalPrice:
-        '.cart__total-price strong, .cart__order-total .cart__order-price-sum strong',
+      totalNumber: '.cart__total-number',
+      totalPrice:'.cart__total-price strong, .cart__order-total .cart__order-price-sum strong',
+      //totalPrice2:'.cart__order-total .cart__order-price-sum strong',
       subtotalPrice: '.cart__order-subtotal .cart__order-price-sum strong',
       deliveryFee: '.cart__order-delivery .cart__order-price-sum strong',
       form: '.cart__order',
@@ -106,12 +106,8 @@
     getElements() {
       const thisProduct = this;
 
-      thisProduct.accordionTrigger = thisProduct.element.querySelector(
-        select.menuProduct.clickable
-      );
-      thisProduct.form = thisProduct.element.querySelector(
-        select.menuProduct.form
-      );
+      thisProduct.accordionTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
+      thisProduct.form = thisProduct.element.querySelector(select.menuProduct.form);
       thisProduct.formInputs = thisProduct.form.querySelectorAll(
         select.all.formInputs
       );
@@ -322,8 +318,8 @@
       thisCart.products = [];
       thisCart.getElements(element);
       thisCart.initActions();
-      //console.log('thisCart.products', thisCart.products); 
-      //?? ta tablica jest pusta
+      // console.log('thisCart.products', thisCart.products); 
+      //?? ta tablica jest pusta i czeka na click
     }
 
     initActions() {
@@ -338,12 +334,13 @@
       const thisCart = this;
       thisCart.dom = {};
       thisCart.dom.wraper = element;
-      thisCart.dom.toggleTrigger = thisCart.dom.wraper.querySelector(
-        select.cart.toggleTrigger
-      );
-      thisCart.dom.productList = thisCart.dom.wraper.querySelector(
-        select.cart.productList
-      );
+      thisCart.dom.toggleTrigger = thisCart.dom.wraper.querySelector(select.cart.toggleTrigger);
+      thisCart.dom.productList = thisCart.dom.wraper.querySelector(select.cart.productList);
+      thisCart.dom.deliveryFee = thisCart.dom.wraper.querySelector(select.cart.deliveryFee);
+      thisCart.dom.subTotalPrice = thisCart.dom.wraper.querySelector(select.cart.subtotalPrice);
+      thisCart.dom.totalPrice = thisCart.dom.wraper.querySelector(select.cart.totalPrice);
+      thisCart.dom.totalPrice2 =  thisCart.dom.wraper.querySelector(select.cart.totalPrice2);
+      thisCart.dom.totalNumber = thisCart.dom.wraper.querySelector(select.cart.totalNumber);
     }
 
     add(menuProduct) {
@@ -357,34 +354,33 @@
 
     update() {
       const thisCart = this;
-      //const deliveryFee = settings.cart.defaultDeliveryFee;
-      //thisCart.deliveryFee = deliveryFee;
-      thisCart.totalNumber = 0;
-      //const totalNumber = [];
-      //const subTotalPrice = 0;
-
-      //pętla for..of
-      //musi zwiękaszać totalNumber o liczbę szt danego produktu
-      // for all chose products
+      let deliveryFee = settings.cart.defaultDeliveryFee;
+      let totalNumber = 0;
+      let subTotalPrice = 0;
+    
       for (let product of thisCart.products) {
-        //thisCart.totalNumber =  product.amount;
-        thisCart.totalNumber = thisCart.totalNumber + product.amount;
-        console.log('totalNumber: ', thisCart.totalNumber);
-        //thisCart.subTotalPrice += product.price;
-        //console.log('subtotalPrice', thisCart.subTotalPrice);
+        totalNumber += product.amount;
+        console.log('totalNumber: ', totalNumber);
+        subTotalPrice += product.price;
+        console.log('subtotalPrice', subTotalPrice);
       }
 
-      // thisCart.totalPrice = cena całkowita potrzebna do kupna wszystkich produktów i koszty dostawy
-      // thisCart.totalPrice nie obędzie się bez jakiegoś ifa, który sprawdzi, czy w ogóle jest sens doliczać deliveryFee
-    
-      //if (thisCart.totalNumber !== 0 ) {
-      // thisCart.totalPrice = subTotalPrice + deliveryFee;
-      //console.log('total price', thisCart.totalPrice);
-      //} else {
-      //  thisCart.deliveryFee = 0;
-      // }
+      if (thisCart.totalNumber !== 0 ) {
+        thisCart.totalPrice = subTotalPrice + deliveryFee;
+        console.log('total price', thisCart.totalPrice);
+        thisCart.dom.deliveryFee.innerHTML = deliveryFee;
+        thisCart.dom.totalNumber.innerHTML = totalNumber;
+        thisCart.dom.subTotalPrice.innerHTML = subTotalPrice;
+        thisCart.dom.totalPrice.innerHTML = thisCart.totalPrice;
+        //thisCart.dom.totalPrice2.innerHTML = thisCart.totalPrice;
+       
+      }
+      else {
+        thisCart.totalPrice = 0;
+        deliveryFee = 0;
+      }
+      // ubdate cart elements in html
       
-
     }
   }
 
