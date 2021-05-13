@@ -319,8 +319,7 @@
       thisCart.products = [];
       thisCart.getElements(element);
       thisCart.initActions();
-      // console.log('thisCart.products', thisCart.products); 
-      //?? ta tablica jest pusta i czeka na click
+      console.log('thisCart.products', thisCart.products); 
     }
 
     initActions() {
@@ -333,7 +332,7 @@
         thisCart.update();
       });
       thisCart.dom.productList.addEventListener('remove', function(event) {
-        thisCart.remove(event.deteil.cartProduct);
+        thisCart.remove(event.detail.cartProduct);
       });
     }
 
@@ -384,18 +383,19 @@
         deliveryFee = 0;
       }
     }
-    // remove(cartProduct) {
-    // thisCart = this;
-    // 1. Znalezienie i Usunięcie reprezentacji produktu z HTML-a,
-    /*const galleryDiv = document.querySelector('div.gallery');
-    galleryDiv.remove();*/
-    //const indexOfProduct = categories.indexOf('travel');
-
-    // 2.Usunięcie informacji o danym produkcie z tablicy thisCart.products.
-    /* const allRemovedValues = myArray.splice(startAtIndex, numberOfElements);*/
-    // 3.Wywołać metodę update w celu przeliczenia sum po usunięciu produktu.
-    // update(thisCart);
-  // }
+    remove(cartProduct) {
+      const thisCart = this;
+      // 1. Znalezienie i Usunięcie reprezentacji produktu z HTML-a,
+      cartProduct.dom.wrapper.remove();
+      const indexOfProduct = thisCart.products.indexOf(cartProduct);
+      console.log('Product index to remove', indexOfProduct);
+      // 2.Usunięcie informacji o danym produkcie z tablicy thisCart.products.
+      //delete thisCart.products[indexOfProduct];
+      const productRemovedValues = thisCart.products.splice(indexOfProduct, 1);
+      console.log('Removed product from array', productRemovedValues);
+      // 3.Wywołać metodę update w celu przeliczenia sum po usunięciu produktu.
+      thisCart.update();
+    }
   }
 
   class CartProduct {
@@ -435,8 +435,7 @@
       );
       thisCartProduct.dom.amountWidget.addEventListener('updated', function () {
         thisCartProduct.amount = thisCartProduct.amountWidget.value;
-        thisCartProduct.price =
-          thisCartProduct.amount * thisCartProduct.priceSingle;
+        thisCartProduct.price = thisCartProduct.amount * thisCartProduct.priceSingle;
         thisCartProduct.dom.price.innerHTML = thisCartProduct.price;
       });
     }
@@ -458,7 +457,8 @@
       });
       thisCartProduct.dom.remove.addEventListener('click', function (event) {
         event.preventDefault();
-        thisCartProduct.remove(event.detail.cartProduct);
+        thisCartProduct.remove();
+        console.log('click');
       });
     }
   }
