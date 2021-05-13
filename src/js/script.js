@@ -327,23 +327,26 @@
       const thisCart = this;
       thisCart.dom.toggleTrigger.addEventListener('click', function (event) {
         event.preventDefault();
-        thisCart.dom.wraper.classList.toggle(classNames.cart.wrapperActive);
+        thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
       });
       thisCart.dom.productList.addEventListener('updated', function(){
         thisCart.update();
+      });
+      thisCart.dom.productList.addEventListener('remove', function(event) {
+        thisCart.remove(event.deteil.cartProduct);
       });
     }
 
     getElements(element) {
       const thisCart = this;
       thisCart.dom = {};
-      thisCart.dom.wraper = element;
-      thisCart.dom.toggleTrigger = thisCart.dom.wraper.querySelector(select.cart.toggleTrigger);
-      thisCart.dom.productList = thisCart.dom.wraper.querySelector(select.cart.productList);
-      thisCart.dom.deliveryFee = thisCart.dom.wraper.querySelector(select.cart.deliveryFee);
-      thisCart.dom.subTotalPrice = thisCart.dom.wraper.querySelector(select.cart.subtotalPrice);
-      thisCart.dom.totalPrice = thisCart.dom.wraper.querySelectorAll(select.cart.totalPrice);
-      thisCart.dom.totalNumber = thisCart.dom.wraper.querySelector(select.cart.totalNumber);
+      thisCart.dom.wrapper = element;
+      thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(select.cart.toggleTrigger);
+      thisCart.dom.productList = thisCart.dom.wrapper.querySelector(select.cart.productList);
+      thisCart.dom.deliveryFee = thisCart.dom.wrapper.querySelector(select.cart.deliveryFee);
+      thisCart.dom.subTotalPrice = thisCart.dom.wrapper.querySelector(select.cart.subtotalPrice);
+      thisCart.dom.totalPrice = thisCart.dom.wrapper.querySelectorAll(select.cart.totalPrice);
+      thisCart.dom.totalNumber = thisCart.dom.wrapper.querySelector(select.cart.totalNumber);
     }
 
     add(menuProduct) {
@@ -363,14 +366,11 @@
     
       for (let product of thisCart.products) {
         totalNumber += product.amount;
-        console.log('totalNumber: ', totalNumber);
         subTotalPrice += product.price;
-        console.log('subtotalPrice', subTotalPrice);
       }
 
       if (thisCart.totalNumber !== 0 ) {
         thisCart.totalPrice = subTotalPrice + deliveryFee;
-        console.log('total price', thisCart.totalPrice);
         thisCart.dom.deliveryFee.innerHTML = deliveryFee;
         thisCart.dom.totalNumber.innerHTML = totalNumber;
         thisCart.dom.subTotalPrice.innerHTML = subTotalPrice;
@@ -383,8 +383,19 @@
         thisCart.totalPrice = 0;
         deliveryFee = 0;
       }
-      
     }
+    // remove(cartProduct) {
+    // thisCart = this;
+    // 1. Znalezienie i Usunięcie reprezentacji produktu z HTML-a,
+    /*const galleryDiv = document.querySelector('div.gallery');
+    galleryDiv.remove();*/
+    //const indexOfProduct = categories.indexOf('travel');
+
+    // 2.Usunięcie informacji o danym produkcie z tablicy thisCart.products.
+    /* const allRemovedValues = myArray.splice(startAtIndex, numberOfElements);*/
+    // 3.Wywołać metodę update w celu przeliczenia sum po usunięciu produktu.
+    // update(thisCart);
+  // }
   }
 
   class CartProduct {
@@ -398,7 +409,7 @@
       thisCartProduct.params = menuProduct.params;
       thisCartProduct.getElements(element);
       thisCartProduct.initAmountWidget();
-      console.log('xxxxxxxx',thisCartProduct);
+      thisCartProduct.initActions();
     }
     getElements(element) {
       const thisCartProduct = this;
@@ -427,6 +438,27 @@
         thisCartProduct.price =
           thisCartProduct.amount * thisCartProduct.priceSingle;
         thisCartProduct.dom.price.innerHTML = thisCartProduct.price;
+      });
+    }
+    remove() {
+      const thisCartProduct = this;
+      const event = new CustomEvent('remove', {
+        bubbles: true,
+        detail: {
+          cartProduct: thisCartProduct,
+        }
+      });
+      thisCartProduct.dom.wrapper.dispatchEvent(event);
+      console.log('xxxxx');
+    }
+    initActions() {
+      const thisCartProduct = this;
+      thisCartProduct.dom.edit.addEventListener('click', function (event) {
+        event.preventDefault();
+      });
+      thisCartProduct.dom.remove.addEventListener('click', function (event) {
+        event.preventDefault();
+        thisCartProduct.remove(event.detail.cartProduct);
       });
     }
   }
