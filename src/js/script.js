@@ -170,8 +170,6 @@
           );
           const imageSelected =
             formData[paramId] && formData[paramId].includes(optionId);
-          //console.log(optionId, option);
-          //console.log('Images: ', optionImage);
           if (imageSelected) {
             if (!option.default) {
               price += option.price;
@@ -221,22 +219,17 @@
       const thisProduct = this;
       const formData = utils.serializeFormToObject(thisProduct.form);
       const params = {};
-      //for very category (param)
       for (let paramId in thisProduct.data.params) {
         const param = thisProduct.data.params[paramId];
-
-        // craate category param in params const eg. params = { ingredients: { name: 'Ingredients', options: {}}}
         params[paramId] = {
           label: param.label,
           options: {},
         };
-        // // for every option in this category
         for (let optionId in param.options) {
           const option = param.options[optionId];
           const optionSelected =
             formData[paramId] && formData[paramId].includes(optionId);
           if (optionSelected) {
-            //option is selected
             params[paramId].options[optionId] = option.label;
           }
         }
@@ -252,8 +245,7 @@
       thisWidget.getElements(element);
       thisWidget.setValue(thisWidget.input.value);
       thisWidget.initActions();
-      //console.log('AmountWidget: ', thisWidget);
-      //console.log('constructor arguments: ', element);
+      
     }
     getElements(element) {
       const thisWidget = this;
@@ -287,9 +279,8 @@
         !isNaN(newValue) &&
         newValue >= thisWidget.minProductValue &&
         newValue <= thisWidget.maxProductValue
-      ) {
+      ){
         thisWidget.value = newValue;
-        //console.log('newValue', newValue);
       }
       thisWidget.input.value = thisWidget.value;
       thisWidget.announce();
@@ -385,15 +376,11 @@
     }
     remove(cartProduct) {
       const thisCart = this;
-      // 1. Znalezienie i Usunięcie reprezentacji produktu z HTML-a,
+
       cartProduct.dom.wrapper.remove();
       const indexOfProduct = thisCart.products.indexOf(cartProduct);
-      console.log('Product index to remove', indexOfProduct);
-      // 2.Usunięcie informacji o danym produkcie z tablicy thisCart.products.
-      //delete thisCart.products[indexOfProduct];
       const productRemovedValues = thisCart.products.splice(indexOfProduct, 1);
       console.log('Removed product from array', productRemovedValues);
-      // 3.Wywołać metodę update w celu przeliczenia sum po usunięciu produktu.
       thisCart.update();
     }
   }
