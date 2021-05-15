@@ -330,6 +330,9 @@
       thisCart.dom.productList.addEventListener('remove', function(event) {
         thisCart.remove(event.detail.cartProduct);
       });
+      thisCart.dom.form.addEventListener('submit', function(event){
+        event.preventDefault();
+      });
     }
 
     getElements(element) {
@@ -342,6 +345,7 @@
       thisCart.dom.subTotalPrice = thisCart.dom.wrapper.querySelector(select.cart.subtotalPrice);
       thisCart.dom.totalPrice = thisCart.dom.wrapper.querySelectorAll(select.cart.totalPrice);
       thisCart.dom.totalNumber = thisCart.dom.wrapper.querySelector(select.cart.totalNumber);
+      thisCart.dom.form = thisCart.dom.wrapper.querySelector(select.cart.form);
     }
 
     add(menuProduct) {
