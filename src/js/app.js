@@ -16,34 +16,22 @@ const app = {
         break;
       }
     }
-    console.log('pageMatchingHash', pageMatchingHash);
     thisApp.activatePage(pageMatchingHash);
     for(let link of thisApp.navLinks) {
       link.addEventListener('click', function(event) {
         const clickedElement = this;
         event.preventDefault();
-        /* get page id from href attribute */
         const id = clickedElement.getAttribute('href').replace('#', '');
-        /* run thisApp.activatePage with that id */
         thisApp.activatePage(id);
-        /* change URL hash */
         window.location.hash = '#/' + id;
       });
     }
   },
   activatePage: function(pageId) {
     const thisApp = this;
-    /* add clas "active" to matching pages, remove from non-matching*/
     for(let page of thisApp.pages) {
-      //if(page.id == pageId) {
-      //  page.classList.add(classNames.pages.active);
-      //}
-      //else {
-      //  page.classList.romove(classNames.pages.active);
-      // }
       page.classList.toggle(classNames.pages.active, page.id == pageId);
     }
-    /* add clas "active" to matching links, remove from non-matching*/
     for(let link of thisApp.navLinks) {
       link.classList.toggle(
         classNames.nav.active,
@@ -69,7 +57,7 @@ const app = {
       .then(function(parsedResponse) {
         thisApp.data.products = parsedResponse;
         thisApp.initMenu();
-        console.log('parsedResponse', parsedResponse);
+        //console.log('parsedResponse', parsedResponse);
       });
   },
   initCart: function () {

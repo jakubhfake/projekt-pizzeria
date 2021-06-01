@@ -8,7 +8,7 @@ class Cart {
     thisCart.products = [];
     thisCart.getElements(element);
     thisCart.initActions();
-    console.log('thisCart.products', thisCart.products); 
+    //console.log('thisCart.products', thisCart.products); 
   }
 
   initActions() {
