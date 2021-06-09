@@ -5,6 +5,21 @@
 import BaseWidget from './BaseWidget.js';
 
 class HourPicker extends BaseWidget {
+  constructor(wrapper) {
+    const thisWidget = this;
 
+  }
+
+  parseValue(value){
+    return value;
+  }
+      
+  isValid(){
+    return true;
+  }
+      
+  renderValue(){
+      
+  }
 }
 export default HourPicker;
