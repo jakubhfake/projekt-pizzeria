@@ -56,7 +56,7 @@ class Cart {
 
   update() {
     const thisCart = this;
-    let deliveryFee = settings.cart.defaultDeliveryFee;
+    thisCart.deliveryFee = settings.cart.defaultDeliveryFee;
     thisCart.totalNumber = 0;
     thisCart.subTotalPrice = 0;
     
@@ -66,8 +66,8 @@ class Cart {
     }
 
     if (thisCart.totalNumber !== 0 ) {
-      thisCart.totalPrice = thisCart.subTotalPrice + deliveryFee;
-      thisCart.dom.deliveryFee.innerHTML = deliveryFee;
+      thisCart.totalPrice = thisCart.subTotalPrice + thisCart.deliveryFee;
+      thisCart.dom.deliveryFee.innerHTML = thisCart.deliveryFee;
       thisCart.dom.totalNumber.innerHTML = thisCart.totalNumber;
       thisCart.dom.subTotalPrice.innerHTML = thisCart.subTotalPrice;
       for(let cartTotalPrice of thisCart.dom.totalPrice){
@@ -77,7 +77,7 @@ class Cart {
     }
     else {
       thisCart.totalPrice = 0;
-      deliveryFee = 0;
+      thisCart.deliveryFee = 0;
     }
   }
   remove(cartProduct) {

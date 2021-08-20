@@ -207,6 +207,12 @@
     right: 40px;
     top: 180px;
   }
+
+  .selected {
+    background: $color-success;
+    border: solid 3px $color-table-border;
+  }
+
 }
 
 .booking-options {
