@@ -67,12 +67,6 @@ class Booking {
   parseData(bookings, eventsCurrent, eventsRepeat) {
     const thisBooking = this;
     thisBooking.booked = {};
-    /*for (let item of bookings) {
-      thisBooking.makeBooked(item.date, item.hour, item.duration, item.table);
-    }
-    for (let item of eventsCurrent) {
-      thisBooking.makeBooked(item.date, item.hour, item.duration, item.table);
-    }*/
     const minDate = thisBooking.datePicker.minDate;
     const maxDate = thisBooking.datePicker.maxDate;
     console.log('minDate', minDate);
@@ -87,7 +81,7 @@ class Booking {
     
     thisBooking.updateDOM();
     thisBooking.selectedTable = null;
-    console.log('Selected table ID', thisBooking.selectedTableId);
+    
   }
 
   makeBooked(date, hour, duration, table) {
@@ -104,7 +98,6 @@ class Booking {
       thisBooking.booked[date][hourBlock].push(table);
       
     }
-    console.log('Make bookrd data:', thisBooking.booked);
   }
   updateDOM(){
     const thisBooking = this;
@@ -150,26 +143,25 @@ class Booking {
     thisBooking.dom.peopleAmount = thisBooking.dom.wrapper.querySelector(
       select.booking.peopleAmount
     );
+    thisBooking.dom.peopleAmountValue = thisBooking.dom.peopleAmount.querySelector(
+      select.booking.peopleAmountValue);
     thisBooking.dom.hoursAmount = thisBooking.dom.wrapper.querySelector(
       select.booking.hoursAmount
     );
     thisBooking.dom.hoursAmountValue = thisBooking.dom.hoursAmount.querySelector(
-      '[name="hours"]');
+      select.booking.hoursAmountValue);
     // getElementsByName nie działa ?????
     
     thisBooking.dom.datePicker = thisBooking.dom.wrapper.querySelector(
       select.widgets.datePicker.wrapper
     );
-    thisBooking.dom.datePickerValue = thisBooking.dom.datePicker.querySelector(`input[name="date"]`);
-    console.log('Data picker data format:',typeof(thisBooking.dom.datePickerValue.value));
-
+    thisBooking.dom.datePickerValue = thisBooking.dom.datePicker.querySelector(
+      select.widgets.datePicker.input);
     thisBooking.dom.hourPicker = thisBooking.dom.wrapper.querySelector(
       select.widgets.hourPicker.wrapper
     );
-    thisBooking.dom.hourPickerValue = thisBooking.dom.hourPicker.querySelector(select.widgets.hourPicker.output);
-    console.log('mmmm', thisBooking.dom.hourPicker.querySelector(select.widgets.hourPicker.output));
-    console.log('Hour picker data format:', thisBooking.dom.hourPickerValue);
-
+    thisBooking.dom.hourPickerValue = thisBooking.dom.hourPicker.querySelector(
+      select.widgets.hourPicker.output);    
     thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(
       select.booking.tables
     );
@@ -208,7 +200,6 @@ class Booking {
     thisBooking.datePicker = new DatePicker(thisBooking.dom.datePicker);
     thisBooking.dom.datePicker.addEventListener('click', function (event) {
       event.preventDefault();
-      console.log(thisBooking.datePicker);
     });
 
     thisBooking.hourPicker = new HourPicker(thisBooking.dom.hourPicker);
@@ -243,8 +234,6 @@ class Booking {
         
         for(let table of thisBooking.dom.tables){
           const tableId = table.getAttribute('data-table');
-          //console.log('Tables ID', tableId);
-          //console.log('Tables ID', typeof(tableId));
           if (table.classList.contains(classNames.booking.tableSelected)
             && tableId !== thisBooking.selectedTableId) {
 
@@ -274,20 +263,18 @@ class Booking {
       hour: thisBooking.dom.hourPickerValue.innerHTML,
       table: parseInt(thisBooking.selectedTableId),
       duration: parseInt(thisBooking.dom.hoursAmountValue.value),
-      ppl: thisBooking.dom.peopleAmount.value,
+      ppl: parseInt(thisBooking.dom.peopleAmountValue.value),
       starters: [],
       phone: thisBooking.dom.phone.value,
       address: thisBooking.dom.address.value,
     };
-    console.log('Booking details:', payload);
     for(let starter of thisBooking.dom.starters) {
       if(starter.checked == true) {
         payload.starters.push(starter.value);
       }
     }
     thisBooking.makeBooked(payload.date, payload.hour, payload.duration, payload.table);
-    // Unlock function after finish preparing all of data from payload
-  
+     
     const options = {
       method: 'POST',
       headers: {

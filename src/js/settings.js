@@ -41,15 +41,15 @@ export const select = {
   },
   booking: {
     peopleAmount: '.people-amount',
+    peopleAmountValue: '[name="people"]', 
     hoursAmount: '.hours-amount',
+    hoursAmountValue: '[name="hours"]',
     allTables: '.floor-plan',
     tables: '.floor-plan .table',
     phone: '[name="phone"]',
     address: '[name="address"]',
     starters: '[name="starter"]',
     bookingForm: '.booking-form',
-    datePickerValue: '[name="date"]',
-    hourPickerValue: '[name="hour"]',
   },
   nav: {
     links: '.main-nav a',
