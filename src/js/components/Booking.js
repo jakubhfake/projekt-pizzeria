@@ -102,7 +102,9 @@ class Booking {
         thisBooking.booked[date][hourBlock] = [];
       }
       thisBooking.booked[date][hourBlock].push(table);
+      
     }
+    console.log('Make bookrd data:', thisBooking.booked);
   }
   updateDOM(){
     const thisBooking = this;
@@ -151,15 +153,23 @@ class Booking {
     thisBooking.dom.hoursAmount = thisBooking.dom.wrapper.querySelector(
       select.booking.hoursAmount
     );
-    thisBooking.dom.hoursAmountValue = thisBooking.dom.hoursAmount.querySelector('[name="hours"]');
+    thisBooking.dom.hoursAmountValue = thisBooking.dom.hoursAmount.querySelector(
+      '[name="hours"]');
     // getElementsByName nie działa ?????
-    console.log('ddddddd', thisBooking.dom.hoursAmountValue.value);
+    
     thisBooking.dom.datePicker = thisBooking.dom.wrapper.querySelector(
       select.widgets.datePicker.wrapper
     );
+    thisBooking.dom.datePickerValue = thisBooking.dom.datePicker.querySelector(`input[name="date"]`);
+    console.log('Data picker data format:',typeof(thisBooking.dom.datePickerValue.value));
+
     thisBooking.dom.hourPicker = thisBooking.dom.wrapper.querySelector(
       select.widgets.hourPicker.wrapper
     );
+    thisBooking.dom.hourPickerValue = thisBooking.dom.hourPicker.querySelector(select.widgets.hourPicker.output);
+    console.log('mmmm', thisBooking.dom.hourPicker.querySelector(select.widgets.hourPicker.output));
+    console.log('Hour picker data format:', thisBooking.dom.hourPickerValue);
+
     thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(
       select.booking.tables
     );
@@ -170,7 +180,6 @@ class Booking {
     thisBooking.dom.starters = thisBooking.dom.wrapper.querySelectorAll(
       select.booking.starters
     );
-    console.log('Starters:', thisBooking.dom.starters);
     thisBooking.dom.phone = thisBooking.dom.wrapper.querySelector(
       select.booking.phone
     );
@@ -234,8 +243,8 @@ class Booking {
         
         for(let table of thisBooking.dom.tables){
           const tableId = table.getAttribute('data-table');
-          console.log('Tables ID', tableId);
-          console.log('Tables ID', typeof(tableId));
+          //console.log('Tables ID', tableId);
+          //console.log('Tables ID', typeof(tableId));
           if (table.classList.contains(classNames.booking.tableSelected)
             && tableId !== thisBooking.selectedTableId) {
 
@@ -261,8 +270,8 @@ class Booking {
     const thisBooking = this;
     const url = settings.db.url + '/' + settings.db.booking;
     const payload = {
-      date: thisBooking.dom.datePicker.value,
-      hour: thisBooking.dom.hourPicker.value,
+      date: thisBooking.dom.datePickerValue.value,
+      hour: thisBooking.dom.hourPickerValue.innerHTML,
       table: parseInt(thisBooking.selectedTableId),
       duration: parseInt(thisBooking.dom.hoursAmountValue.value),
       ppl: thisBooking.dom.peopleAmount.value,
@@ -273,13 +282,12 @@ class Booking {
     console.log('Booking details:', payload);
     for(let starter of thisBooking.dom.starters) {
       if(starter.checked == true) {
-        console.log('Marked checkbox', starter.checked);
         payload.starters.push(starter.value);
       }
     }
-
-    //thisBooking.makeBooked(payload.date, payload.hour, payload.duration, payload.table);
-    // Unlock function after finish preparing all of data from payload 
+    thisBooking.makeBooked(payload.date, payload.hour, payload.duration, payload.table);
+    // Unlock function after finish preparing all of data from payload
+  
     const options = {
       method: 'POST',
       headers: {

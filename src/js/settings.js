@@ -48,6 +48,8 @@ export const select = {
     address: '[name="address"]',
     starters: '[name="starter"]',
     bookingForm: '.booking-form',
+    datePickerValue: '[name="date"]',
+    hourPickerValue: '[name="hour"]',
   },
   nav: {
     links: '.main-nav a',
