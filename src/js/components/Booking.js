@@ -150,18 +150,13 @@ class Booking {
     );
     thisBooking.dom.hoursAmountValue = thisBooking.dom.hoursAmount.querySelector(
       select.booking.hoursAmountValue);
-    // getElementsByName nie działa ?????
-    
+       
     thisBooking.dom.datePicker = thisBooking.dom.wrapper.querySelector(
       select.widgets.datePicker.wrapper
     );
-    thisBooking.dom.datePickerValue = thisBooking.dom.datePicker.querySelector(
-      select.widgets.datePicker.input);
     thisBooking.dom.hourPicker = thisBooking.dom.wrapper.querySelector(
       select.widgets.hourPicker.wrapper
-    );
-    thisBooking.dom.hourPickerValue = thisBooking.dom.hourPicker.querySelector(
-      select.widgets.hourPicker.output);    
+    ); 
     thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(
       select.booking.tables
     );
@@ -274,7 +269,6 @@ class Booking {
       }
     }
     thisBooking.makeBooked(payload.date, payload.hour, payload.duration, payload.table);
-    console.log('Payload data:', payload);
     const options = {
       method: 'POST',
       headers: {
