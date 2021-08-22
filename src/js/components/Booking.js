@@ -256,9 +256,9 @@ class Booking {
     const payload = {
       date: thisBooking.datePicker.value,
       hour: thisBooking.hourPicker.value,
-      table: parseInt(thisBooking.selectedTableId),
-      duration: parseInt(thisBooking.dom.hoursAmountValue.value),
-      ppl: parseInt(thisBooking.dom.peopleAmountValue.value),
+      table: Number(thisBooking.selectedTableId),
+      duration: Number(thisBooking.dom.hoursAmountValue.value),
+      ppl: Number(thisBooking.dom.peopleAmountValue.value),
       starters: [],
       phone: thisBooking.dom.phone.value,
       address: thisBooking.dom.address.value,
@@ -269,6 +269,7 @@ class Booking {
       }
     }
     thisBooking.makeBooked(payload.date, payload.hour, payload.duration, payload.table);
+    console.log('Payload data:', payload);
     const options = {
       method: 'POST',
       headers: {
