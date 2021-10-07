@@ -1,10 +1,18 @@
+import {templates} from '../settings.js';
+
 class Home {
   constructor(element){
     const thisHome = this;
-    thisHome.renderHomeMenu(element);
+    thisHome.render(element);
   }
-  //getElements();
-  //render ();
+
+  render(element) {
+    const thisHome = this;
+    thisHome.dom = {};
+    thisHome.dom.wrapper = element;
+    const generatedHTML = templates.homeWidget();
+    thisHome.dom.wrapper.innerHTML = generatedHTML;
+  }
 
 }
 export default Home;
