@@ -1,0 +1,48 @@
+/* eslint no-tabs: ["error", { allowIndentationTabs: true }] */
+
+.home-wrapper {
+  margin: ($base-size * 3.5) auto;
+  padding: ($base-size * 6) ($base-size * 4);
+  background: $color-light;
+  border-bottom: 1px solid lighten($color-dark, 70%);
+  border-radius: $radius;
+}
+
+.home-menu {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  div {
+    width: 49%;
+    box-sizing: border-box;
+    text-align: center;
+    background-color: yellow;
+    border-radius: 5px;
+  }
+}
+
+.opening-hours {
+  text-align: center;
+  background-color: red;
+  border-radius: 5px;
+  margin: 10px 0;
+  padding: 2px;
+}
+
+.main-carousel {
+  height: 500px;
+  margin-top: 80px;
+  .carousel-cell 
+
+  .carousel-item {
+    display: flex;
+  }
+
+  .carousel-description {
+    width: 385px;
+    height: 180px;
+    margin: auto;
+  }
+}
