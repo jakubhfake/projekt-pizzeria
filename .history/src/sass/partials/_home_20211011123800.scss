@@ -20,65 +20,21 @@
     text-align: center;
     border-radius: 5px;
     color: $color-light;
-    //background-size: cover;
-    //background-size: inherit;
-    background-size: 80%;
-    // background-attachment: scroll;
-    cursor: pointer;
-    background-position: center;
-    overflow: hidden;
+    background-size: cover;
+    // background-size: 200px;
 
-    // .book-a-table {
-    //   transform: translateY(30px);
-    //   transition: 0.2s;
-    // }
-
-    // .book-a-table:hover {
-    //   transform: translateY(0px);
-    //   transition: 0.2s;
-    // }
+  // img {
+  //   width: 33%;
+  //   height: 100%;
+  //   object-fit: cover;
+  //   border-radius: 5px;
+  // }
   }
-
-  .order-online {
-    background-image: url('../../images/home/pizza-1.jpg');
-  }
-
-  .book-a-table {
-    background-image: url('../../images/home/pizza-2.jpg');
-  }
-
-  .menu-btn-wrapper {
-      width:100%;
-      height: 100%;
-
-      h3 {
-        transform: translateY(20px);
-        transition: 0.5s;
-      }
-      p {
-        transform: translateY(60px);
-        background-color: red;
-        transition: 0.5s;
-      }
-    }
-
-  .menu-btn-wrapper:hover {
-    // transform: translateY(0px);
-    transition: 3s;
-
-    h3{
-      transform: translateY(0px);
-    }
-
-    p {
-      transform: translateY(0px);
-    }
-    }
-  }
+}
 
 .opening-hours {
   text-align: center;
-  background-color: $color-main;
+  background-color: red;
   border-radius: 5px;
   margin: 10px 0;
   padding: 2px;

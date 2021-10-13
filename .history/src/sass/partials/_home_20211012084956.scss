@@ -47,12 +47,12 @@
     background-image: url('../../images/home/pizza-2.jpg');
   }
 
-  .menu-btn-wrapper {
+  .-btn-wrapper {
       width:100%;
       height: 100%;
 
       h3 {
-        transform: translateY(20px);
+        transform: translateY(30px);
         transition: 0.5s;
       }
       p {
@@ -62,7 +62,7 @@
       }
     }
 
-  .menu-btn-wrapper:hover {
+  .order-btn-wrapper:hover {
     // transform: translateY(0px);
     transition: 3s;
 

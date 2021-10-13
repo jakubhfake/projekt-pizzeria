@@ -26,55 +26,20 @@
     // background-attachment: scroll;
     cursor: pointer;
     background-position: center;
-    overflow: hidden;
 
-    // .book-a-table {
-    //   transform: translateY(30px);
-    //   transition: 0.2s;
-    // }
-
-    // .book-a-table:hover {
-    //   transform: translateY(0px);
-    //   transition: 0.2s;
-    // }
-  }
-
-  .order-online {
-    background-image: url('../../images/home/pizza-1.jpg');
-  }
-
-  .book-a-table {
-    background-image: url('../../images/home/pizza-2.jpg');
-  }
-
-  .menu-btn-wrapper {
-      width:100%;
-      height: 100%;
-
-      h3 {
-        transform: translateY(20px);
-        transition: 0.5s;
-      }
-      p {
-        transform: translateY(60px);
-        background-color: red;
-        transition: 0.5s;
-      }
-    }
-
-  .menu-btn-wrapper:hover {
-    // transform: translateY(0px);
-    transition: 3s;
-
-    h3{
-      transform: translateY(0px);
-    }
-
-    p {
-      transform: translateY(0px);
-    }
+    * {
+      transform: translateY(10px);
     }
   }
+
+    .order-online {
+      background-image: url('../../images/home/pizza-1.jpg');
+    }
+
+    .book-a-table {
+      background-image: url('../../images/home/pizza-2.jpg');
+    }
+}
 
 .opening-hours {
   text-align: center;
