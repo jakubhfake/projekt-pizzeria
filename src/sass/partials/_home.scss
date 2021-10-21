@@ -1,5 +1,3 @@
-/* eslint no-tabs: ["error", { allowIndentationTabs: true }] */
-
 .home-wrapper {
   margin: ($base-size * 3.5) auto;
   padding: ($base-size * 6) ($base-size * 4);
@@ -36,9 +34,7 @@
   }
 
   .menu-btn-wrapper {
-    width: 100%;
-    height: 100%;
-
+    
     h3 {
       transform: translateY(20px);
       transition: 0.5s;
@@ -46,7 +42,6 @@
 
     p {
       transform: translateY(60px);
-      background-color: red;
       transition: 0.5s;
     }
   }
@@ -101,6 +96,14 @@
     width: 66%;
     height: 100%;
   }
+
+  p {
+    font-size: 12px;
+  }
+}
+
+.opinion-preson-name {
+  font-style: italic;
 }
 
 .gallery-wrapper {
@@ -176,10 +179,10 @@
 
     i {
       opacity: 0;
-      color: $color-danger;
+      color: $color-light;
       transition: font-size .3s opacity .5s;
       transition-property: font-size, opacity;
-      // transition-delay: 0.1s;
+      
     }
 
   }
@@ -192,14 +195,14 @@
     }
 
     i:hover {
-      color: $color-icon-red;
+      color: $color-danger;
       font-size: 20px;
     }
   }
 }
 
 .instagram-link {
-  margin-top: 50px;
+  margin-top: 30px;
   
   a{
     color: $color-danger;

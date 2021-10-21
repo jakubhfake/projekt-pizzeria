@@ -17,6 +17,10 @@ export const select = {
     menuProductsActive: '#product-list > .product.active',
     formInputs: 'input, select',
   },
+  homePage: {
+    buttonBooking: '.book-a-table',
+    buttonOrder: '.order-online',
+  },
   menuProduct: {
     clickable: '.product__header',
     form: '.product__order',
@@ -39,6 +43,9 @@ export const select = {
       wrapper: '.hour-picker',
       input: 'input[type="range"]',
       output: '.output',
+    },
+    carouselWidget: {
+      wrapper: '.main-carousel',
     },
   },
   booking: {

@@ -10,7 +10,7 @@ const app = {
     const thisApp = this;
     thisApp.pages = document.querySelector(select.containerOf.pages).children;
     thisApp.navLinks = document.querySelectorAll(select.nav.links);
-    console.log('xxxx', thisApp.navLinks);
+    // console.log('xxxx', thisApp.navLinks);
     const idFromHash = window.location.hash.replace('#/', '');
     let pageMatchingHash = thisApp.pages[0].id;
     for(let page of thisApp.pages) {
@@ -103,3 +103,4 @@ const app = {
 };
 app.init();
 
+export default app;
