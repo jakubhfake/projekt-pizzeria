@@ -10,20 +10,26 @@ const app = {
     const thisApp = this;
     thisApp.pages = document.querySelector(select.containerOf.pages).children;
     thisApp.navLinks = document.querySelectorAll(select.nav.links);
-    // console.log('xxxx', thisApp.navLinks);
+    // thisApp.navLinksAtHome = window.querySelectorAll(select.nav.links);
+    console.log('Podstrony', thisApp.pages);
+    console.log('xxxx', thisApp.navLinks);
+    console.log('yyyyy', thisApp.navLinksAtHome);
     const idFromHash = window.location.hash.replace('#/', '');
     let pageMatchingHash = thisApp.pages[0].id;
     for(let page of thisApp.pages) {
       if(page.id == idFromHash){
         pageMatchingHash = page.id;
-        console.log('page', pageMatchingHash);
-        console.log('page.id', page.id);
+        // console.log('page', pageMatchingHash);
+        // console.log('page.id', page.id);
         break;
       }
     }
+    
     thisApp.activatePage(pageMatchingHash);
+
     for(let link of thisApp.navLinks) {
       link.addEventListener('click', function(event) {
+        console.log('KLIkam active');
         const clickedElement = this;
         event.preventDefault();
         const id = clickedElement.getAttribute('href').replace('#', '');
@@ -83,8 +89,6 @@ const app = {
     const thisApp = this;
     thisApp.homeElem = document.querySelector(select.containerOf.home);
     thisApp.home = new Home(thisApp.homeElem);
-    console.log('Home');
-
   },
 
   init: function () {

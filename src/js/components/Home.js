@@ -1,6 +1,4 @@
-import {classNames, select, templates} from '../settings.js';
-import app from '../app.js';
-
+import { select, templates} from '../settings.js';
 
 class Home {
   constructor(element){
@@ -40,20 +38,14 @@ class Home {
   initAction() {
     const thisHome = this;
 
-    // thisHome.dom.buttonOrder.addEventListener('click', function(event){
-    //   event.preventDefault();
-    //   console.log('Button Order is clicked');
-    //   app.activatePage('order');
-    // });
+    thisHome.dom.buttonOrder.addEventListener('click', function(event){
+      event.preventDefault();
+      thisHome.navLinks[1].click();
+    });
 
     thisHome.dom.buttonBooking.addEventListener('click', function(event){
       event.preventDefault();
-      console.log('Button Booking is clicked');
-      thisHome.pages[0].classList.remove(classNames.pages.active);
-      thisHome.navLinks[0].classList.remove(classNames.nav.active);
-      thisHome.pages[2].classList.add(classNames.pages.active);
-      thisHome.navLinks[2].classList.add(classNames.nav.active);
-      // app.activatePage();
+      thisHome.navLinks[2].click();
     });
   }
 
