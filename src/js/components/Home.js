@@ -22,6 +22,7 @@ class Home {
     thisHome.navLinks = document.querySelectorAll(select.nav.links);
   }
 
+  
   initPlugin() {
     const thisHome = this;
     // eslint-disable-next-line no-undef
@@ -40,12 +41,12 @@ class Home {
 
     thisHome.dom.buttonOrder.addEventListener('click', function(event){
       event.preventDefault();
-      thisHome.navLinks[1].click();
+      
     });
 
     thisHome.dom.buttonBooking.addEventListener('click', function(event){
       event.preventDefault();
-      thisHome.navLinks[2].click();
+    
     });
   }
 
