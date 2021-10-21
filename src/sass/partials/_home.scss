@@ -22,19 +22,17 @@
     cursor: pointer;
     background-position: center;
     overflow: hidden;
-
   }
 
   .order-online {
-    background-image: url('../../images/home/pizza-1.jpg');
+    background-image: url("../../images/home/pizza-1.jpg");
   }
 
   .book-a-table {
-    background-image: url('../../images/home/pizza-2.jpg');
+    background-image: url("../../images/home/pizza-2.jpg");
   }
 
   .menu-btn-wrapper {
-    
     h3 {
       transform: translateY(20px);
       transition: 0.5s;
@@ -49,7 +47,7 @@
   .menu-btn-wrapper:hover {
     transition: 3s;
 
-    h3{
+    h3 {
       transform: translateY(0px);
     }
 
@@ -75,7 +73,7 @@
     width: 100%;
     height: 200px;
     margin-right: 10px;
-    background: #8C8;
+    background: #8c8;
     border-radius: 5px;
     counter-increment: carousel-cell;
 
@@ -151,7 +149,7 @@
     background-image: url(../../images/home/pizza-9.jpg);
   }
 
-  .overlay{
+  .overlay {
     position: absolute;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -164,9 +162,9 @@
     bottom: 0;
     cursor: pointer;
     border-radius: 5%;
-    transition: all .5s;
+    transition: all 0.5s;
     transition-property: background-color;
-        
+
     :first-child {
       text-align: right;
       padding-right: 5px;
@@ -180,16 +178,14 @@
     i {
       opacity: 0;
       color: $color-light;
-      transition: font-size .3s opacity .5s;
+      transition: font-size 0.3s opacity 0.5s;
       transition-property: font-size, opacity;
-      
     }
-
   }
-  
+
   .overlay:hover {
     background-color: $overlay-filter-effect;
-  
+
     i {
       opacity: 1;
     }
@@ -203,8 +199,8 @@
 
 .instagram-link {
   margin-top: 30px;
-  
-  a{
+
+  a {
     color: $color-danger;
   }
 
