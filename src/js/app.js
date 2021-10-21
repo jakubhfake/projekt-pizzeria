@@ -10,22 +10,8 @@ const app = {
     const thisApp = this;
     thisApp.pages = document.querySelector(select.containerOf.pages).children;
     thisApp.navLinks = document.querySelectorAll(select.nav.links);
-    // thisApp.navLinksAtHome = window.querySelectorAll(select.nav.links);
-    console.log('Podstrony', thisApp.pages);
-    console.log('xxxx', thisApp.navLinks);
-    console.log('yyyyy', thisApp.navLinksAtHome);
-    const idFromHash = window.location.hash.replace('#/', '');
-    let pageMatchingHash = thisApp.pages[0].id;
-    for(let page of thisApp.pages) {
-      if(page.id == idFromHash){
-        pageMatchingHash = page.id;
-        // console.log('page', pageMatchingHash);
-        // console.log('page.id', page.id);
-        break;
-      }
-    }
-    
-    thisApp.activatePage(pageMatchingHash);
+    thisApp.activatePage(thisApp.pages[0].id);
+    window.location.hash = '#/' + thisApp.pages[0].id;
 
     for(let link of thisApp.navLinks) {
       link.addEventListener('click', function(event) {
