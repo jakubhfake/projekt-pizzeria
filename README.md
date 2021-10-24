@@ -1,4 +1,4 @@
 
-https://git.heroku.com/projekt-pizza.git
+http:///projekt-pizza.herokuapp.com
 
 version 2.1
