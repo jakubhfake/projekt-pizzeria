@@ -5,7 +5,6 @@ class Home {
     const thisHome = this;
     thisHome.render(element);
     thisHome.initPlugin();
-    thisHome.initAction();
   }
 
   render(element) {
@@ -16,10 +15,6 @@ class Home {
     thisHome.dom.wrapper.innerHTML = generatedHTML;
 
     thisHome.dom.carouselWidget = thisHome.dom.wrapper.querySelector(select.widgets.carouselWidget.wrapper);
-    thisHome.dom.buttonBooking = thisHome.dom.wrapper.querySelector(select.homePage.buttonBooking);
-    thisHome.dom.buttonOrder = thisHome.dom.wrapper.querySelector(select.homePage.buttonOrder);
-    thisHome.pages = document.querySelector(select.containerOf.pages).children;
-    thisHome.navLinks = document.querySelectorAll(select.nav.links);
   }
 
   
@@ -32,23 +27,8 @@ class Home {
       contain: true,
       wrapAround: true,
       prevNextButtons: false,
-      autoPlay: true,
+      // autoPlay: true,
     });
   }
-
-  initAction() {
-    const thisHome = this;
-
-    thisHome.dom.buttonOrder.addEventListener('click', function(event){
-      event.preventDefault();
-      
-    });
-
-    thisHome.dom.buttonBooking.addEventListener('click', function(event){
-      event.preventDefault();
-    
-    });
-  }
-
 }
 export default Home;

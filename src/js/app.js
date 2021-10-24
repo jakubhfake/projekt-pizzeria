@@ -9,13 +9,12 @@ const app = {
   initPages: function() {
     const thisApp = this;
     thisApp.pages = document.querySelector(select.containerOf.pages).children;
-    thisApp.navLinks = document.querySelectorAll(select.nav.links);
+    thisApp.navLinks = document.querySelectorAll(select.nav.links);   
     thisApp.activatePage(thisApp.pages[0].id);
     window.location.hash = '#/' + thisApp.pages[0].id;
 
     for(let link of thisApp.navLinks) {
       link.addEventListener('click', function(event) {
-        console.log('KLIkam active');
         const clickedElement = this;
         event.preventDefault();
         const id = clickedElement.getAttribute('href').replace('#', '');
@@ -33,6 +32,7 @@ const app = {
       link.classList.toggle(
         classNames.nav.active,
         link.getAttribute('href') == '#' + pageId
+        
       );
     }
   },
@@ -84,11 +84,12 @@ const app = {
     //console.log('classNames:', classNames);
     //console.log('settings:', settings);
     //console.log('templates:', templates);
+    thisApp.initHome();
     thisApp.initPages();
     thisApp.initData();
     thisApp.initCart();
     thisApp.initBooking();
-    thisApp.initHome();
+    
   },
 };
 app.init();

@@ -18,8 +18,8 @@ export const select = {
     formInputs: 'input, select',
   },
   homePage: {
-    buttonBooking: '.book-a-table',
-    buttonOrder: '.order-online',
+    buttonBooking: '.book-a-table a',
+    buttonOrder: '.order-online a',
   },
   menuProduct: {
     clickable: '.product__header',
@@ -61,7 +61,7 @@ export const select = {
     bookingForm: '.booking-form',
   },
   nav: {
-    links: '.main-nav a',
+    links: '.nav-links-wrapper a',
   },
   cart: {
     productList: '.cart__order-summary',

@@ -33,6 +33,13 @@
   }
 
   .menu-btn-wrapper {
+    a {
+      display: block;
+      text-decoration: none;
+      color: $color-light
+
+    }
+
     h3 {
       transform: translateY(20px);
       transition: 0.5s;
